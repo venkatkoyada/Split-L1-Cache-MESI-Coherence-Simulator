@@ -1,0 +1,57 @@
+# Sample trace for ECE 485/585 Split L1 Cache Simulation
+# Format: <op> <hex_address>
+#
+# 0 = read data (D-cache)
+# 1 = write data (D-cache)
+# 2 = instruction fetch (I-cache)
+# 3 = invalidate from L2 (both caches)
+# 4 = data request from L2 / snoop (D-cache)
+# 8 = clear caches + reset stats
+# 9 = print contents and stats
+
+# --- Instruction fetches (sequential, likely same set) ---
+2 408ed4
+2 408ed8
+2 408edc
+2 408ee0
+2 408ee4
+
+# --- Data reads ---
+0 10019d94
+0 10019d98
+0 10019d9c
+
+# --- Data writes ---
+1 10019d88
+1 10019d88
+1 10019d8c
+
+# --- Read same data lines again (should hit) ---
+0 10019d94
+0 10019d88
+
+# --- Print state mid-trace ---
+9 0
+
+# --- Invalidate a line (from L2) ---
+3 10019d94
+
+# --- Try to read invalidated line (should miss) ---
+0 10019d94
+
+# --- Snoop: L2 requests a line that was written (Modified) ---
+4 10019d88
+
+# --- Another instruction fetch (same cache line as earlier) ---
+2 408ed4
+
+# --- Clear and reset ---
+8 0
+
+# --- Post-clear: reads should all miss again ---
+2 408ed4
+0 10019d94
+1 10019d88
+
+# --- Final print ---
+9 0

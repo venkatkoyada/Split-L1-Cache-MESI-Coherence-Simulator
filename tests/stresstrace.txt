@@ -1,0 +1,54 @@
+# Cold reads (fill some lines)
+0 AAA00000
+0 BBB00000
+0 CCC00000
+0 DDD00000
+
+# Instruction fetches
+2 11100000
+2 22200000
+
+# Writes (should change E → M)
+1 AAA00004
+1 BBB00008
+
+# Snoop requests (should cause M → S)
+4 AAA00000
+4 BBB00000
+
+# More reads to fill the set
+0 EEE00000
+0 FFF00000
+0 11100000
+0 22200000
+
+# Print cache
+9
+
+# Write miss (forces RFO)
+1 33300010
+
+# Fill remaining ways
+0 44400000
+0 55500000
+
+# Cause eviction
+0 66600000
+
+# Invalidate lines
+3 AAA00000
+3 CCC00000
+
+# Access after invalidation
+0 AAA00020
+1 CCC00030
+
+# Another snoop
+4 CCC00000
+
+# Instruction fetch again
+2 33300000
+2 44400000
+
+# Final print
+9
