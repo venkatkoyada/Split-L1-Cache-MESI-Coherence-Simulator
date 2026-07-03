@@ -5,7 +5,7 @@ A C11 trace-driven simulator of a split Level-1 cache subsystem (separate Instru
 Developed as a 4-person team project by Venkat Sai Sumanth Koyada, Sai Tarun Mokkala, Nikhil Swarna, and Mrudula Chekuri. Instructor: Prof. Yuchen Huang.
 
 ## Overview
-Each simulated processor has separate L1 caches - an Instruction Cache (I$) for fetching instructions and a Data Cache (D$) for loads/stores — both interacting with a shared, inclusive L2 cache. The simulator processes a memory access trace and models cache behavior across four dimensions:
+Each simulated processor has separate L1 caches - an Instruction Cache (I$) for fetching instructions and a Data Cache (D$) for loads/stores - both interacting with a shared, inclusive L2 cache. The simulator processes a memory access trace and models cache behavior across four dimensions:
 
 - **Geometry:** 64-byte lines, 16,384 sets, 4-way set-associative I-cache, 8-way set-associative D-cache
 - **Replacement:** LRU (least recently used), with invalid lines prioritized for eviction before applying LRU
@@ -15,7 +15,7 @@ Each simulated processor has separate L1 caches - an Instruction Cache (I$) for 
 Full design rationale, address decoding details, results, and learning outcomes are documented in [`docs/PROJECT REPORT.pdf`](./docs/PROJECT%20REPORT.pdf).
 
 ## My Contribution
-I implemented the **MESI cache coherence protocol**, managing the four cache states (Modified, Exclusive, Shared, Invalid) and designing the state transition logic for read, write, and snoop operations to maintain coherence across caches in a multiprocessor environment. I ensured state updates correctly followed protocol rules - including transitions triggered by processor requests versus bus transactions — and integrated MESI state handling with the cache read/write operations to guarantee data consistency and proper synchronization between caches.
+I implemented the **MESI cache coherence protocol**, managing the four cache states (Modified, Exclusive, Shared, Invalid) and designing the state transition logic for read, write, and snoop operations to maintain coherence across caches in a multiprocessor environment. I ensured state updates correctly followed protocol rules - including transitions triggered by processor requests versus bus transactions - and integrated MESI state handling with the cache read/write operations to guarantee data consistency and proper synchronization between caches.
 
 ## Team Contributions
 
